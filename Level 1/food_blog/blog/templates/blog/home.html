@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Home{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'blog/home.css' %}">
+{% endblock %}
+
+{% block page_body %}
+    <title>Professional Dark Themed Blog</title>
+
+    <div class="container">
+        <header>
+            <h1>My Professional Dark Themed Blog</h1>
+            <nav>
+                <a href="#" class="button">Home</a>
+                <a href="#" class="button">About</a>
+                <a href="#" class="button">Contact</a>
+            </nav>
+        </header>
+        <main>
+            <article>
+                <h2>Blog Post Title</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at tortor a libero posuere laoreet.</p>
+                <a href="#" class="button">Read More</a>
+            </article>
+            <article>
+                <h2>Another Blog Post</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at tortor a libero posuere laoreet.</p>
+                <a href="#" class="button">Read More</a>
+            </article>
+        </main>
+    </div>
+    <script>
+        const particlesContainer = document.body;
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            const size = Math.random() * 10 + 5; // Size between 5px and 15px
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.top = `${Math.random() * 100}vh`;
+            particle.style.opacity = Math.random();
+
+            // Set the background to a radial gradient
+            particle.style.background = `radial-gradient(circle, rgba(156, 89, 182, 0.45), rgba(40, 40, 40, 0.08))`;
+
+            particlesContainer.appendChild(particle);
+
+            // Animation for floating effect
+            const floatDuration = Math.random() * 3000 + 2000; // Random duration between 2s and 5s
+            particle.animate([
+                { transform: `translateY(0)`, opacity: 1 },
+                { transform: `translateY(-50px)`, opacity: 0.5 },
+                { transform: `translateY(-100px)`, opacity: 0 },
+            ], {
+                duration: floatDuration,
+                iterations: Infinity,
+                easing: 'ease-in-out'
+            });
+
+            // Remove particle after animation ends
+            setTimeout(() => {
+                particle.remove();
+            }, floatDuration); // Remove after float duration
+        }
+
+        // Create multiple particles
+        setInterval(createParticle, 300); // Create a new particle every 300ms
+
+        // Mouse gradient effect
+        const gradientEffect = document.createElement('div');
+        gradientEffect.style.position = 'fixed';
+        gradientEffect.style.top = '0';
+        gradientEffect.style.left = '0';
+        gradientEffect.style.width = '100%';
+        gradientEffect.style.height = '100%';
+        gradientEffect.style.pointerEvents = 'none';
+        gradientEffect.style.transition = 'background 0.3s ease';
+        document.body.appendChild(gradientEffect);
+
+        document.addEventListener('mousemove', (event) => {
+            const x = event.clientX;
+            const y = event.clientY;
+            gradientEffect.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(156, 89, 182, 0.32), rgba(40, 40, 40, 0.04) 11%)`; // Adjusted size to 25%
+        });
+    </script>
+{% endblock %}
