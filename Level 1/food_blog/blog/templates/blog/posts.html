@@ -17,6 +17,8 @@
             {% with img_name='images/'|add:post.image|add:'.jpg' %}
                 <img src="{% static img_name %}" alt="Post Image" class="image">
             {% endwith %}
+            <hr>
+            <p></p>
             {{post.content}}
         </div>
         <div class="author">

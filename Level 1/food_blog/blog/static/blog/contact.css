@@ -1,0 +1,40 @@
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+    color: #DCDCDC; /* Light gray for labels */
+}
+
+input, textarea {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2C2F38; /* Darker input background */
+    color: #EAEAEA; /* Light gray text */
+    margin-bottom: 15px;
+    resize: none; /* Prevent resizing of textarea */
+}
+
+input[type="submit"] {
+    background: linear-gradient(45deg, #8E44AD, #732D91); /* Gradient background for button */
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background: linear-gradient(45deg, #732D91, #8E44AD); /* Reverse gradient on hover */
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .container {
+        padding: 20px;
+    }
+}
