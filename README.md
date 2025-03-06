@@ -18,7 +18,9 @@ This repository is organized as follows:
 - Creating reusable HTML snippets.
 - Injecting contextual variables with Django HTML syntax.
 - Using tags (for, with, block, load, include...) in HTML using Django HTML syntax.
+- Using filters in Django HTML syntax.
 - Managing views.
+- Managing 404 pages.
 
 ## Future Plans
 
