@@ -1,0 +1,22 @@
+.content {
+    margin-top: 20px;
+}
+
+.section {
+    margin-bottom: 40px;
+}
+
+
+p {
+    line-height: 1.6; /* Improve readability */
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .container {
+        padding: 20px;
+    }
+}

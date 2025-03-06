@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title%}{{post.title|title}}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "blog/posts.css" %}">
+{% endblock %}
+
+{% block page_body%}
+    <div class="container">
+        <header>
+            <h1>{{post.title|title}}</h1>
+            {% include "blog/includes/nav.html" %}
+        </header>
+        <div class="post-content">
+            {% with img_name='images/'|add:post.image|add:'.jpg' %}
+                <img src="{% static img_name %}" alt="Post Image" class="image">
+            {% endwith %}
+            {{post.content}}
+        </div>
+        <div class="author">
+            <p><strong>Author:</strong> {{post.author|default:"Could not load"}}</p>
+            <p><strong>Date:</strong> {{post.publish_date|default:"Could not load"}}</p>
+        </div>
+    </div>
+{% endblock %}
