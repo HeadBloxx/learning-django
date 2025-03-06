@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import URLPattern
-from django.http import HttpResponse
+from django.http import Http404
 
 # Create your views here.
 
@@ -31,7 +31,10 @@ def about(request):
     return render(request, "blog/about.html")
 
 def posts(request, post_id):
-    return render(request, "blog/posts.html", {"post": posts_dict[str(post_id)]})
+    try:
+        return render(request, "blog/posts.html", {"post": posts_dict[str(post_id)]})
+    except:
+        raise  Http404()
 
 def contact(request):
     return render(request, "blog/contact.html")
