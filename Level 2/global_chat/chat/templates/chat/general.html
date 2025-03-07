@@ -66,27 +66,75 @@
 </head>
 <body>
     <div class="chat-container">
-        <div class="messages" id="messages"></div>
+        <div class="messages" id="messages">
+            {% for message in messages %}
+                <div class="message anonymous">
+                    {{ message.text }}  <!-- Display message text -->
+                </div>
+            {% endfor %}
+        </div>
         <div class="input-container">
             <input type="text" id="messageInput" placeholder="Type your message here..." />
             <button onclick="sendMessage()">Send</button>
         </div>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        function sendMessage() {
-            const input = document.getElementById('messageInput');
-            const messageText = input.value;
-            if (messageText.trim() === '') return;
-
+        function appendMessage(messageText) {
             const messageElement = document.createElement('div');
             messageElement.classList.add('message', 'user');
             messageElement.textContent = messageText;
 
             document.getElementById('messages').appendChild(messageElement);
-            input.value = '';
             document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
         }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const messageText = input.value;
+            if (messageText.trim() === '') return;
+
+            // Send message via AJAX
+            const csrftoken = '{{ csrf_token }}'
+
+            $.ajax({
+                url: {% url 'general' %},
+                type: "POST",
+                dataType: "json",
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken  // CSRF token
+                },
+                data: JSON.stringify({ message: messageText }),
+                success: function(response) {
+                    console.log(response);
+                    appendMessage(messageText);  // Append the message to chat
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
+
+            input.value = '';  // Clear input field
+        }
+        
+        $.ajax({
+            url: {% url "general" %},
+            type: "GET",
+            dataType: "json",
+            data: {last_id: 1},
+            success: (data) => {
+              for (let message of data.payload) {
+                appendMessage(message.text);
+              }
+            },
+            error: (error) => {
+              console.log(error);
+            }
+        });
+
+
     </script>
 </body>
 </html>
