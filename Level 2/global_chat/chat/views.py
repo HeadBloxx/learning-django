@@ -35,7 +35,6 @@ def ajax_request(request):
             if not starting_iteration:
                 return missing_data()
             
-            # Convert to integer and handle invalid cases
             try:
                 starting_iteration = int(starting_iteration)
             except ValueError:
@@ -44,14 +43,11 @@ def ajax_request(request):
             if starting_iteration < 1:
                 return missing_data()
             
-            # Query chats starting from the given ID
             return_payload = []
             all_chats = Chat.objects.filter(id__gte=starting_iteration)
             for chat in all_chats:
                 return_payload.append({
-                    "id": chat.id,
                     "text": chat.text,
-                    "created_at": chat.created_at.isoformat(),  # Use .isoformat() to format datetime
                 })
             print(return_payload)
             return JsonResponse({"payload": return_payload})
@@ -61,8 +57,8 @@ def ajax_request(request):
 # ------------------------------------- VIEWS ------------------------------------- #
 def general(request):
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-        return ajax_request(request)  # Make sure to pass 'request' here
+        return ajax_request(request)
     else:
         print("not ajax")
-    # If it's a regular request, pass 'messages' to the template
+    
     return render(request, "chat/general.html", {"messages": Chat.objects.all()})

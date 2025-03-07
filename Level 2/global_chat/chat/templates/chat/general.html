@@ -94,7 +94,7 @@
             const messageText = input.value;
             if (messageText.trim() === '') return;
 
-            // Send message via AJAX
+            
             const csrftoken = '{{ csrf_token }}'
 
             $.ajax({
@@ -109,14 +109,14 @@
                 data: JSON.stringify({ message: messageText }),
                 success: function(response) {
                     console.log(response);
-                    appendMessage(messageText);  // Append the message to chat
+                    appendMessage(messageText);
                 },
                 error: function(xhr, status, error) {
                     console.log(error);
                 }
             });
 
-            input.value = '';  // Clear input field
+            input.value = '';
         }
         
         $.ajax({
