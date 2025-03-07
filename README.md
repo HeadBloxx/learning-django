@@ -8,6 +8,7 @@ Welcome to my Django learning repository! This space documents my journey as I d
 This repository is organized as follows:
 
 - **Level 1**: Contains foundational Django projects focusing on basic concepts and functionalities.
+- **Level 2**: Contains slightly more complex operations, including database handling.
 - *More complex project levels are coming as my knowledge expands*
 
 ## Skills shown
@@ -21,6 +22,7 @@ This repository is organized as follows:
 - Using filters in Django HTML syntax.
 - Managing views.
 - Managing 404 pages.
+- Managing database models
 
 ## Future Plans
 
