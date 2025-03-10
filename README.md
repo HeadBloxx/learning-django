@@ -22,7 +22,8 @@ This repository is organized as follows:
 - Using filters in Django HTML syntax.
 - Managing views.
 - Managing 404 pages.
-- Managing database models
+- Managing database models.
+- Handling AJAX.
 
 ## Future Plans
 
