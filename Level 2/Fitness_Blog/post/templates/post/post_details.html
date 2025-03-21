@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}{{post.title}}{% endblock %}
+
+{% block body %}
+
+<h1>{{post.title}}</h1>
+
+<i>
+
+    {% for tag in post.tags.all %}
+        {{tag.name}}; 
+    {% endfor %}
+
+</i>
+
+<p>{{post.text}}</p>
+
+<hr>
+<b><i>{{post.author.name}}</i></b>
+<i>{{post.creation_date}}</i>
+
+{% endblock %}
