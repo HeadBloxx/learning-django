@@ -24,6 +24,7 @@ This repository is organized as follows:
 - Managing 404 pages.
 - Managing database models.
 - Handling AJAX.
+- Using relational databases (One to Many, Many to Many, One to One)
 
 ## Future Plans
 
